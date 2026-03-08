@@ -61,48 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 3. Easter Egg (Keyboard): Type "albin"
-    const secretCode = ['a', 'l', 'b', 'i', 'n'];
-    let inputSequence = [];
 
-    document.addEventListener('keydown', (e) => {
-        // Keep only the last N characters
-        inputSequence.push(e.key.toLowerCase());
-        if (inputSequence.length > secretCode.length) {
-            inputSequence.shift();
-        }
-
-        // Check if the sequence matches
-        if (inputSequence.join('') === secretCode.join('')) {
-            document.getElementById('easter-egg').classList.add('active');
-            inputSequence = []; // Reset
-        }
-    });
-
-    // 4. Easter Egg (Mobile/Touch): Tap the "Projet CLIL" badge 5 times quickly
-    const badge = document.querySelector('.badge');
-    let tapCount = 0;
-    let tapTimer;
-
-    if (badge) {
-        badge.addEventListener('click', () => {
-            tapCount++;
-
-            if (tapCount >= 5) {
-                document.getElementById('easter-egg').classList.add('active');
-                tapCount = 0; // Reset
-            }
-
-            // Reset tap count if they take too long between taps (1 second)
-            clearTimeout(tapTimer);
-            tapTimer = setTimeout(() => {
-                tapCount = 0;
-            }, 1000);
-        });
-    }
-
-    // Close the easter egg modal
-    document.getElementById('close-easter-egg').addEventListener('click', () => {
-        document.getElementById('easter-egg').classList.remove('active');
-    });
 });
